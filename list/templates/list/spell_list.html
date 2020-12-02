@@ -1,0 +1,15 @@
+{% extends 'list/base.html' %}
+{% block page-header %}
+    <h1>Classic Spell List</h1>
+    <p>This spell list is designed to resemble a (more organized) Google Doc, listing only description, name and mana cost</p>
+{% endblock %}
+{% block content %}
+    {% for school in schools %}
+        <hr/>
+        <h2>{{ school.name }}</h2>
+        {% for spell in school.spell_set.all %}
+            <h3><a href="{% url 'spell_detail' pk=spell.pk  %}">{{ spell.name }} ({{ spell.resource }} Mana)</a></h3>
+        <p>{{spell.description}}</p>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'list/base.html' %}
+{% block page-header %}
+    <h1>Tabular List</h1>
+    <p>A tabular list that skip the description but list everything else. Also allows for searching (Ctrl + F) by tags.
+        Click name for details!</p>
+{% endblock %}
+{% block content %}
+    <table class="table table-striped table-bordered table-hover">
+    <caption>List of Spells in Table Form</caption>
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col" class="table-info">Name</th>
+        <th scope="col" class="table-primary">Mana</th>
+        <th scope="col">Casting Time</th>
+        <th scope="col">Range</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Cooldown</th>
+        <th scope="col">Component</th>
+        <th scope="col">Materials</th>
+        <th scope="col" class="table-secondary">Schools</th>
+        <th scope="col">Tags</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for spell in spells %}
+        <tr>
+            <td class="table-info"> <a href="{% url 'spell_detail' pk=spell.pk  %}">{{ spell.name }} </a></td>
+        <td class="table-primary">{{ spell.resource }}</td>
+            <td>{{ spell.castingtime}}</td>
+        <td>{{ spell.range}}</td>
+        <td>{{ spell.duration}}</td>
+        <td>{{ spell.cooldown}}</td>
+        <td>{{ spell.component}}</td>
+        <td>{{ spell.materials}}</td>
+        <td>{% for school in spell.schools.all %} {{ school.name }} {% endfor %}</td>
+        <td>{% for tag in spell.tags.all %} {{ tag.name }} {% endfor %}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+{% endblock %}

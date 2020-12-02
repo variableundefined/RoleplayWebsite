@@ -1,0 +1,21 @@
+{% extends 'list/base.html' %}
+
+{% block content %}
+    <h1> {{ spell.name }}</h1>
+    <hr/>
+    <h2> Statblock</h2>
+<p>
+    <div class ="statblock">Casting Time:</div> {{ spell.castingtime}} <br>
+    <div class ="statblock">Range:</div> {{ spell.range}} <br>
+    <div class ="statblock">Duration:</div> {{ spell.duration}} <br>
+    <div class ="statblock">Cooldown:</div> {{ spell.cooldown}} <br>
+    <div class ="statblock">Resource:</div> {{ spell.resource}} <br>
+    <div class ="statblock">Component:</div> {{ spell.component}} <br>
+    <div class ="statblock">Materials:</div> {{ spell.materials}} <br>
+    <div class ="statblock">Magical School(s):</div> {% for school in spell.schools.all %} {{ school.name }} {% endfor %} <br>
+    <div class ="statblock">Tags:</div> {% for tag in spell.tags.all %} {{ tag.name }} {% endfor %} <br>
+</p>
+    <hr/>
+    <h2>Full Description:</h2>
+    <p> {{ spell.description }}</p>
+{% endblock %}
